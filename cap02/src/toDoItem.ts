@@ -1,5 +1,5 @@
 // definição da classe todoitem
-export class ToDoItem {
+export class TodoItem {
   // construtor da classe com parâmetros públicos (shortcut do TypeScript)
   constructor(
     public id: number,
