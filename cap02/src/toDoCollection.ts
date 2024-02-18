@@ -4,6 +4,7 @@ import { TodoItem } from "./todoItem";
 export class TodoCollection {
     // declaração da propriedade privada nextId, iniciada com o valor 1
     private nextId: number = 1;
+    private itemMap = new Map<number, TodoItem>()
 
     // construtor da classe, que recebe um nome de usuário e uma array opcional de ToDoItems
     constructor(public userName: string, public toDoItems: TodoItem[] = []) {
