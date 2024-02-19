@@ -1,0 +1,55 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TodoCollection = void 0;
+// importa a classe TodoItem do módulo "todoItem"
+const todoItem_1 = require("./todoItem");
+// declaração da classe TodoCollection
+class TodoCollection {
+    userName;
+    toDoItems;
+    // propriedade privada nextId, iniciada com o valor 1
+    nextId = 1;
+    // mapa que armazena objetos TodoItem, onde a chave é o ID e o valor é a tarefa
+    itemMap = new Map();
+    // construtor da classe TodoCollection, recebe um nome de usuário e uma array opcional de ToDoItems
+    constructor(userName, toDoItems = []) {
+        this.userName = userName;
+        this.toDoItems = toDoItems;
+        // para cada item na array fornecida, adiciona ao itemMap usando o ID como chave
+        toDoItems.forEach(item => this.itemMap.set(item.id, item));
+        // inicializa a propriedade userName com o valor fornecido
+        // inicializa a propriedade toDoItems com a array fornecida ou uma array vazia se não fornecida
+    }
+    // método para adicionar uma nova tarefa à coleção, recebe uma descrição da tarefa e retorna o ID atribuído
+    addTodo(task) {
+        // enquanto houver uma tarefa com o ID atual, incrementa o ID
+        while (this.getTodoById(this.nextId)) {
+            this.nextId++;
+        }
+        // cria uma nova instância de TodoItem e adiciona ao itemMap
+        this.itemMap.set(this.nextId, new todoItem_1.TodoItem(this.nextId, task));
+        // retorna o ID atribuído à nova tarefa
+        return this.nextId;
+    }
+    // método para obter tarefas da coleção, opcionalmente filtradas para incluir ou excluir tarefas concluídas
+    getTodoItems(includeComplete) {
+        // retorna um array contendo os valores do itemMap (objetos TodoItem)
+        // filtra o array com base no parâmetro includeComplete
+        return [...this.itemMap.values()]
+            .filter(item => includeComplete || !item.complete);
+    }
+    // método para obter uma tarefa pelo ID, retorna a tarefa correspondente ou undefined se não encontrada
+    getTodoById(id) {
+        return this.itemMap.get(id);
+    }
+    // método para marcar uma tarefa como completa ou não completa, recebe o ID da tarefa e o status de conclusão
+    markComplete(id, complete) {
+        // obtém a tarefa pelo ID
+        const toDoItem = this.getTodoById(id);
+        // se a tarefa existe, atualiza o status de conclusão
+        if (toDoItem) {
+            toDoItem.complete = complete;
+        }
+    }
+}
+exports.TodoCollection = TodoCollection;

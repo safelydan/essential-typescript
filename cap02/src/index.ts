@@ -4,10 +4,10 @@ import { TodoCollection } from "./todoCollection";
 
 // criando uma lista de instâncias da classe TodoItem
 let todos: TodoItem[] = [
-    new TodoItem(1, "comprar Flores"),
-    new TodoItem(2, "comprar Sapatos"),
-    new TodoItem(3, "retirar Ingressos"),
-    new TodoItem(4, "ligar para Joe", true)
+    new TodoItem(1, "comprar flores"),
+    new TodoItem(2, "comprar sapatos"),
+    new TodoItem(3, "retirar ingressos", true),
+    new TodoItem(4, "ligar para joy")
 ];
 
 // criando uma instância da classe TodoCollection

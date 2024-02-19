@@ -14,7 +14,7 @@ export class TodoItem {
   public printDetails(): void {
     // utiliza uma string de formatação para imprimir os detalhes, adicionando "(completo)" se a tarefa estiver completa
     console.log(
-      `${this.id}\t${this.task} ${this.complete ? "\t(complete)" : ""}`
+      `${this.id}\t${this.task} ${this.complete ? "\t(completa)" : ""}`
     );
   }
 }
