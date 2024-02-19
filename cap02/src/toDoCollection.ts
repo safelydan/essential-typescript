@@ -1,13 +1,17 @@
+// importa a classe TodoItem do módulo "todoItem"
 import { TodoItem } from "./todoItem";
 
-// declaração da classe ToDoCollection
+// declaração da classe TodoCollection
 export class TodoCollection {
-    // declaração da propriedade privada nextId, iniciada com o valor 1
+    // propriedade privada nextId, iniciada com o valor 1
     private nextId: number = 1;
-    private itemMap = new Map<number, TodoItem>()
+    // mapa que armazena objetos TodoItem, onde a chave é o ID e o valor é a tarefa
+    private itemMap = new Map<number, TodoItem>();
 
-    // construtor da classe, que recebe um nome de usuário e uma array opcional de ToDoItems
+    // construtor da classe TodoCollection, recebe um nome de usuário e uma array opcional de ToDoItems
     constructor(public userName: string, public toDoItems: TodoItem[] = []) {
+        // para cada item na array fornecida, adiciona ao itemMap usando o ID como chave
+        toDoItems.forEach(item => this.itemMap.set(item.id, item));
         // inicializa a propriedade userName com o valor fornecido
         // inicializa a propriedade toDoItems com a array fornecida ou uma array vazia se não fornecida
     }
@@ -19,19 +23,27 @@ export class TodoCollection {
             this.nextId++;
         }
 
-        // cria uma nova instância de ToDoItem e a adiciona à array toDoItems
-        this.toDoItems.push(new TodoItem(this.nextId, task));
+        // cria uma nova instância de TodoItem e adiciona ao itemMap
+        this.itemMap.set(this.nextId, new TodoItem(this.nextId, task));
 
         // retorna o ID atribuído à nova tarefa
         return this.nextId;
     }
 
-    // método para obter uma tarefa pelo ID, retorna a tarefa correspondente ou undefined se não encontrada
-    getTodoById(id: number): TodoItem | undefined {
-        return this.toDoItems.find(item => item.id === id);
+    // método para obter tarefas da coleção, opcionalmente filtradas para incluir ou excluir tarefas concluídas
+    getTodoItems(includeComplete: boolean): TodoItem[] {
+        // retorna um array contendo os valores do itemMap (objetos TodoItem)
+        // filtra o array com base no parâmetro includeComplete
+        return [...this.itemMap.values()]
+            .filter(item => includeComplete || !item.complete);
     }
 
-    // método para marcar uma tarefa como completa, recebe o ID da tarefa e um boolean indicando o status de conclusão
+    // método para obter uma tarefa pelo ID, retorna a tarefa correspondente ou undefined se não encontrada
+    getTodoById(id: number): TodoItem | undefined {
+        return this.itemMap.get(id);
+    }
+
+    // método para marcar uma tarefa como completa ou não completa, recebe o ID da tarefa e o status de conclusão
     markComplete(id: number, complete: boolean): void {
         // obtém a tarefa pelo ID
         const toDoItem = this.getTodoById(id);
