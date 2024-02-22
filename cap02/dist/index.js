@@ -1,17 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 // importando as classes necessárias do módulo correspondente
-const todoItem_1 = require("./todoItem");
-const todoCollection_1 = require("./todoCollection");
+import { TodoCollection } from "./todoCollection.js";
+import { TodoItem } from "./todoItem.js";
 // criando uma lista de instâncias da classe TodoItem
 let todos = [
-    new todoItem_1.TodoItem(1, "comprar flores"),
-    new todoItem_1.TodoItem(2, "comprar sapatos"),
-    new todoItem_1.TodoItem(3, "retirar ingressos", true),
-    new todoItem_1.TodoItem(4, "ligar para joy")
+    new TodoItem(1, "comprar flores"),
+    new TodoItem(2, "comprar sapatos"),
+    new TodoItem(3, "retirar ingressos", true),
+    new TodoItem(4, "ligar para joy")
 ];
 // criando uma instância da classe TodoCollection
-let collection = new todoCollection_1.TodoCollection("daniel", todos);
+let collection = new TodoCollection("daniel", todos);
 console.clear();
-console.log(`lista de tarefas de ${collection.userName}`);
+console.log(`lista de Tarefas de ${collection.userName}`);
+collection.removeComplete();
 collection.getTodoItems(true).forEach(item => item.printDetails());
