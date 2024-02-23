@@ -44,6 +44,10 @@ export class TodoCollection {
     );
   }
 
+  //a expressão [...this.itemMap.values()] cria uma cópia de todos os valores do itemMap como um array, que é então filtrado de acordo com a condição
+  //especificada antes de ser retornado pela função getTodoItems. isso permite que a função retorne uma lista de itens de tarefas pendentes
+  //ou concluídas, dependendo do valor do parâmetro includeComplete
+
   // método para obter uma tarefa pelo ID, retorna a tarefa correspondente ou undefined se não encontrada
   getTodoById(id: number): TodoItem | undefined {
     return this.itemMap.get(id);

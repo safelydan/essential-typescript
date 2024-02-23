@@ -11,10 +11,10 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "inquirer": "^9.1.4",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@types/inquirer": "^9.0.7"
+    "@types/inquirer": "^9.0.7",
+    "inquirer": "^9.1.4"
   }
 }

@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TodoItem = void 0;
 // definição da classe todoitem
-class TodoItem {
+export class TodoItem {
     id;
     task;
     complete;
@@ -20,7 +17,6 @@ class TodoItem {
         console.log(`${this.id}\t${this.task} ${this.complete ? "\t(completa)" : ""}`);
     }
 }
-exports.TodoItem = TodoItem;
 // comentários explicativos adicionados abaixo:
 // a classe ToDoitem representa um item em uma lista de tarefas.
 // o construtor é uma forma concisa no TypeScript de criar e inicializar propriedades da classe.
