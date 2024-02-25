@@ -8,6 +8,8 @@ export class TodoCollection {
     nextId = 1;
     // mapa que armazena objetos TodoItem, onde a chave é o ID e o valor é a tarefa
     itemMap = new Map();
+    // a palavra-chave "protected" informa ao compilador que uma propriedade só pode ser
+    // acessada por uma classe ou suas subclasses.
     // construtor da classe TodoCollection, recebe um nome de usuário e uma array opcional de ToDoItems
     constructor(userName, toDoItems = []) {
         this.userName = userName;

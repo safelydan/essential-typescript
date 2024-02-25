@@ -1,28 +1,12 @@
-Visão Geral do Capítulo:
+neste capítulo, eu criei um exemplo simples de aplicativo para me familiarizar com o desenvolvimento em typescript e demonstrar alguns conceitos importantes da linguagem. eu pude perceber que o typescript oferece recursos que complementam o javascript, focando na segurança de tipos e ajudando a evitar padrões comuns que podem confundir desenvolvedores, especialmente aqueles que estão migrando de linguagens como c# ou java.
 
-Introdução a Pacotes de Terceiros:
+notei que o typescript não é utilizado isoladamente e que é necessário um ambiente de execução javascript para rodar o código gerado pelo compilador typescript. a vantagem desse método é que projetos escritos em typescript têm acesso total ao amplo espectro de pacotes javascript disponíveis, muitos dos quais possuem definições de tipos para facilitar o uso.
 
-Uso do Inquirer.js, um pacote de terceiros, para lidar com prompts e respostas do usuário.
-Alterações de configuração no package.json e tsconfig.json para habilitar o suporte a módulos ECMAScript.
-Incorporando o Inquirer.js:
+também compreendi que o desenvolvimento em typescript pode ser feito com ferramentas gratuitas, e que a saída do compilador é puro javascript, pronto para ser executado em runtimes javascript apropriados. o typescript permite que aplicativos usem pacotes javascript padrão, embora seja necessário entender módulos javascript antes de instalar um pacote.
 
-Instalação do pacote Inquirer.js usando npm.
-Integração perfeita entre TypeScript e Inquirer.js para interação com o usuário.
-Declarações de Tipo para Pacotes de Terceiros:
+fiquei sabendo que alguns pacotes javascript incluem informações de tipo para uso no typescript, enquanto outros exigem pacotes de declarações de tipos separados. o aplicativo que criei neste capítulo utilizou alguns dos recursos mais essenciais do typescript.
 
-Explicação de duas maneiras de fornecer informações ao TypeScript sobre os tipos usados no código JavaScript.
-Instalação de declarações de tipo para Inquirer.js usando o Definitely Typed.
-Adição de Comandos à Aplicação:
 
-Introdução de novos comandos, como filtrar itens, adicionar tarefas, concluir tarefas e limpar tarefas concluídas.
-Implementação desses comandos usando o pacote Inquirer.js.
-Armazenamento Persistente de Dados:
 
-Integração do pacote Lowdb para armazenamento persistente de dados.
-Criação de uma subclasse JsonTodoCollection que estende a classe existente TodoCollection para persistência de dados.
-Resumo:
 
-O TypeScript fornece tipagem estática e recursos adicionais para aprimorar o desenvolvimento JavaScript.
-As aplicações TypeScript podem aproveitar os pacotes JavaScript existentes.
-A aplicação demonstrou recursos-chave do TypeScript para aplicativos interativos de linha de comando e armazenamento persistente de dados.
-O tutorial enfatiza a integração perfeita do TypeScript com pacotes populares de JavaScript, destacando seus benefícios no aprimoramento da segurança de tipos e na melhoria do processo de desenvolvimento.
+

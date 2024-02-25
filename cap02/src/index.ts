@@ -2,6 +2,7 @@
 import { TodoItem } from "./todoItem.js";
 import { TodoCollection } from "./todoCollection.js";
 import inquirer from "inquirer";
+import { JsonTodoCollection } from "./jsonTodoCollection.js";
 
 // cria uma lista de instâncias da classe TodoItem
 let todos: TodoItem[] = [
@@ -12,7 +13,7 @@ let todos: TodoItem[] = [
 ];
 
 // cria uma instância da classe TodoCollection
-let collection: TodoCollection = new TodoCollection("daniel", todos);
+let collection: TodoCollection = new JsonTodoCollection("daniel", todos);
 let showCompleted = true;
 
 // função para exibir a lista de tarefas no console
@@ -38,6 +39,7 @@ enum Commands {
 // função para adicionar uma nova tarefa
 function promptAdd(): void {
   console.clear();
+  // utiliza o inquirer para obter uma entrada do usuário
   inquirer
     .prompt({
       type: "input",
@@ -45,9 +47,11 @@ function promptAdd(): void {
       message: "Enter the task: ",
     })
     .then((answers) => {
+      // verifica se a entrada não está vazia antes de adicionar a tarefa
       if (answers["add"] !== "") {
         collection.addTodo(answers["add"]);
       }
+      // chama a função para apresentar as opções novamente
       promptUser();
     });
 }
@@ -55,11 +59,13 @@ function promptAdd(): void {
 // função para marcar tarefas como concluídas
 function promptComplete(): void {
   console.clear();
+  // utiliza o inquirer para obter escolhas de tarefas a serem marcadas como concluídas
   inquirer
     .prompt({
       type: "checkbox",
       name: "complete",
       message: "Mark Tasks Complete",
+      // cria as opções de escolha com base nas tarefas disponíveis
       choices: collection.getTodoItems(showCompleted).map((item) => ({
         name: item.task,
         value: item.id,
@@ -68,12 +74,14 @@ function promptComplete(): void {
     })
     .then((answers) => {
       let completedTasks = answers["complete"] as number[];
+      // itera sobre as tarefas completas e marca-as na coleção
       collection.getTodoItems(true).forEach((item) => {
         collection.markComplete(
           item.id,
           completedTasks.find((id) => id === item.id) !== undefined
         );
       });
+      // chama a função para apresentar as opções novamente
       promptUser();
     });
 }
@@ -81,34 +89,42 @@ function promptComplete(): void {
 // função para interagir com o usuário e prompt para escolher opções
 function promptUser(): void {
   console.clear();
+  // chama a função para exibir a lista de tarefas
   displayTodoList();
+  // utiliza o inquirer para obter a escolha do usuário entre as opções definidas na enumeração Commands
   inquirer
     .prompt({
       type: "list",
       name: "command",
       message: "Choose option",
+      // usa os valores da enumeração como opções
       choices: Object.values(Commands),
     })
     .then((answers) => {
-      // se o comando escolhido não for 'Quit', chama a função promptUser recursivamente
+      // avalia a escolha do usuário e executa a ação correspondente
       switch (answers["command"]) {
         case Commands.Toggle:
+          // inverte o valor de showCompleted e chama a função promptUser novamente
           showCompleted = !showCompleted;
           promptUser();
           break;
         case Commands.Add:
+          // chama a função para adicionar uma nova tarefa
           promptAdd();
           break;
 
         case Commands.Complete:
+          // verifica se há tarefas incompletas antes de chamar a função para marcar tarefas como concluídas
           if (collection.getItemCounts().incomplete > 0) {
             promptComplete();
           } else {
+            // se não houver tarefas incompletas, chama a função para apresentar as opções novamente
             promptUser();
           }
           break;
 
         case Commands.Purge:
+          // remove as tarefas concluídas e chama a função para apresentar as opções novamente
           collection.removeComplete();
           promptUser();
           break;

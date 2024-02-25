@@ -1,7 +1,7 @@
 // importa as classes necessárias do módulo correspondente
 import { TodoItem } from "./todoItem.js";
-import { TodoCollection } from "./todoCollection.js";
 import inquirer from "inquirer";
+import { JsonTodoCollection } from "./jsonTodoCollection.js";
 // cria uma lista de instâncias da classe TodoItem
 let todos = [
     new TodoItem(1, "buy flowers"),
@@ -10,7 +10,7 @@ let todos = [
     new TodoItem(4, "call Joy")
 ];
 // cria uma instância da classe TodoCollection
-let collection = new TodoCollection("daniel", todos);
+let collection = new JsonTodoCollection("daniel", todos);
 let showCompleted = true;
 // função para exibir a lista de tarefas no console
 function displayTodoList() {

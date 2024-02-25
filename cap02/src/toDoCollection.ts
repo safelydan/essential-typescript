@@ -11,8 +11,10 @@ export class TodoCollection {
   // propriedade privada nextId, iniciada com o valor 1
   private nextId: number = 1;
   // mapa que armazena objetos TodoItem, onde a chave é o ID e o valor é a tarefa
-  private itemMap = new Map<number, TodoItem>();
-
+  protected itemMap = new Map<number, TodoItem>();
+  // a palavra-chave "protected" informa ao compilador que uma propriedade só pode ser
+  // acessada por uma classe ou suas subclasses.
+  
   // construtor da classe TodoCollection, recebe um nome de usuário e uma array opcional de ToDoItems
   constructor(public userName: string, public toDoItems: TodoItem[] = []) {
     // para cada item na array fornecida, adiciona ao itemMap usando o ID como chave
